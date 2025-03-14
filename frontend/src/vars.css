@@ -1,0 +1,15 @@
+:root {
+  /* Perfect Black, Grey & White Theme */
+  --color-bg: #000000;         /* Rich black background for depth */
+  --color-text: #FFFFFF;       /* Crisp white text for optimal readability */
+  --color-primary: #1A1A1A;    /* Slightly lighter black for primary components */
+  --color-secondary: #4D4D4D;  /* Dark grey for secondary elements and UI layers */
+  --color-accent: #BFBFBF;     /* Light grey accent for highlights and interactive elements */
+  --color-border: #333333;     /* Subtle grey borders for defined separation */
+  --color-contrast: #ff6200;   /* Vibrant blue for high-contrast accents and CTAs */
+
+  /* Typography */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+  --font-main: "Francois One", sans-serif;
+}
