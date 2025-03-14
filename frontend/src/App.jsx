@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./components/NavBar.jsx";
 import "./App.css";
 import AboutMe from "./pages/AboutMe.jsx";
-import Skills from "./pages/skills.jsx";
+import Skills from "./pages/Skills.jsx";
 import Projects from "./pages/Project.jsx"; // Add this line
 import ContactForm from "./pages/Contact.jsx";
 
