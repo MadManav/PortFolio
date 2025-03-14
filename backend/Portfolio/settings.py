@@ -75,7 +75,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Portfolio.wsgi.application'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    'https://portfolio-bqyt.onrender.com/',
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
