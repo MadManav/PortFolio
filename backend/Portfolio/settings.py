@@ -25,10 +25,14 @@ SECRET_KEY = 'django-insecure-%49u*hkgsp$88*--tx%vszqwra+$d10fxl1bt)1$nak86w1n@v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = [
-    "https://portfolio-bqyt.onrender.com",  # Replace with your Render domain
-    'localhost',                     # For local testing
-    '127.0.0.1',                     # For local testing
+    'portfolio-bqyt.onrender.com',  # Fixed: removed "https://"
+    'portfolio-5xsq.onrender.com',  # Added the new host
+    'localhost',
+    '127.0.0.1',
 ]
+
+# OR use a wildcard for all Render subdomains:
+# ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
