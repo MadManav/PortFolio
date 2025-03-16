@@ -38,13 +38,148 @@
   100% { background-position: 100% 50%; }
 }
 
-/* Icon rotation and underline animation remain as before */
-.skills__icon-container { animation: spin 12s linear infinite; }
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+/* Refined SVG animations */
+.skills__icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform;
+}
+
+/* Subtle entry animation for SVGs */
+.skills__card .skills__icon {
+  animation: iconEntry 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) backwards;
+}
+
+@keyframes iconEntry {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Stagger the SVG animations */
+.skills__card:nth-child(3n+1) .skills__icon {
+  animation-delay: 0.1s;
+}
+
+.skills__card:nth-child(3n+2) .skills__icon {
+  animation-delay: 0.2s;
+}
+
+.skills__card:nth-child(3n+3) .skills__icon {
+  animation-delay: 0.3s;
+}
+
+/* Clean modern hover effect */
+.skills__card:hover .skills__icon {
+  transform: translateY(-8px);
+}
+
+/* Add subtle reveal interaction */
+.skills__card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(var(--color-accent-rgb), 0.1) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  border-radius: 15px;
+  pointer-events: none;
+}
+
+.skills__card:hover::after {
+  opacity: 1;
+}
+
+/* Mouse follow effect - requires JS to update --x and --y */
+/* Add this JS to your component:
+  document.querySelectorAll('.skills__card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--x', `${x}%`);
+      card.style.setProperty('--y', `${y}%`);
+    });
+  });
+*/
+
+/* Clean card styling */
+.skills__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-secondary);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardAppear 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.skills__card:nth-child(2n) {
+  animation-delay: 0.15s;
+}
+
+.skills__card:nth-child(3n) {
+  animation-delay: 0.3s;
+}
+
+@keyframes cardAppear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.skills__card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border-color: rgba(var(--color-accent-rgb), 0.5);
+  z-index: 2;
+}
+
+/* Add 3D tilt effect - minimal version */
+.skills__card:hover {
+  transform: translateY(-8px) perspective(1000px) rotateX(2deg);
+}
+
+.skills__name {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.skills__card:hover .skills__name {
+  color: var(--color-accent);
+}
 
 .skills__underline {
-  animation: underlineExpand 0.8s cubic-bezier(0.4,0,0.2,1) forwards;
+  animation: underlineExpand 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
 @keyframes underlineExpand {
   from { width: 0; opacity: 0; }
   to { width: 50px; opacity: 1; }
@@ -59,15 +194,26 @@
   margin: 0 auto;
 }
 
+/* Simplified category animation with staggered delay */
 .skills__category {
   background: var(--color-bg);
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
+  animation: fadeInUp 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+.skills__category:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.skills__category:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -77,9 +223,25 @@
   color: var(--color-accent);
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   position: relative;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.skills__category-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.skills__category:hover .skills__category-title::after {
+  width: 100%;
 }
 
 .skills__grid {
@@ -88,47 +250,16 @@
   gap: 2rem;
 }
 
-/* Card styling */
-.skills__card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--color-secondary);
-  padding: 1rem;
-  border-radius: 15px;
-  border: 2px solid transparent;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
-  opacity: 0;
-  transform: translateY(20px) rotate(5deg);
-  animation: fadeInUp 0.6s ease forwards;
+/* SVG animation states */
+.skills__card:nth-child(1) .skills__icon path {
+  transition: fill 0.3s ease;
 }
 
-.skills__card:hover {
-  transform: translateY(-10px) rotate(2deg) scale(1.05);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.2);
-  border-color: var(--color-accent);
-  z-index: 2;
+.skills__card:hover .skills__icon path:not([fill="none"]) {
+  fill: var(--color-accent);
 }
 
-.skills__icon {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 1rem;
-  transition: transform 0.4s ease;
-}
-
-.skills__card:hover .skills__icon {
-  transform: rotate(15deg) scale(1.15);
-}
-
-.skills__name {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--color-text);
-}
-
-/* Responsive for mobile */
+/* Fixed responsive styling for mobile */
 @media (max-width: 768px) {
   .skills {
     height: auto;
@@ -159,8 +290,14 @@
     font-size: 2.5rem;
     margin: 0 0 2rem 0;
     padding: 0;
-    background: transparent;
-    animation: none;
+    /* Fix: Keep the text fill animation on mobile */
+    background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: aitf 80s linear infinite;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    color: var(--color-accent); /* Fallback color */
   }
 
   .skills__grid {
@@ -174,16 +311,80 @@
     min-height: 120px;
     padding: 1.5rem;
     margin: 0;
-    transform: none !important;
+    opacity: 1;
+    animation: none;
+    transform: none;
   }
 
+  /* Mobile-specific subtle animations */
   .skills__icon {
     width: 50px;
     height: 50px;
+    animation: floatIcon 3s infinite ease-in-out alternate !important;
+  }
+  
+  @keyframes floatIcon {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+  }
+
+  /* Stagger the mobile animations */
+  .skills__card:nth-child(odd) .skills__icon {
+    animation-delay: 0s !important;
+  }
+  
+  .skills__card:nth-child(even) .skills__icon {
+    animation-delay: 0.5s !important;
   }
 
   /* Add in App.css */
   .content {
     padding-top: 60px; /* Space for fixed navbar */
   }
+}
+
+/* Add CSS variables for accent color if not already defined */
+:root {
+  --color-accent-rgb: 64, 196, 255; /* Default blue accent color in RGB format */
+}
+
+/* Add this for scrolling effect */
+@media (min-width: 769px) {
+  .skills__category:nth-child(odd) {
+    transform: translateX(-20px);
+  }
+  
+  .skills__category:nth-child(even) {
+    transform: translateX(20px);
+  }
+  
+  .skills__category {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .skills__category.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Add this JS to your component:
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -20% 0px"
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  document.querySelectorAll('.skills__category').forEach(category => {
+    observer.observe(category);
+  });
+  */
 }
