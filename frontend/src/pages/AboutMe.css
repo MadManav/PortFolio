@@ -1,13 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Francois+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&family=Outfit:wght@300;400;500;600&display=swap');
 
 .about-me-container {
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-    url("../assets/images/bg2.jpg") center/cover fixed;
-  padding: 4rem 2rem;
+  position: relative;
+  background: var(--color-bg);
   min-height: 100vh;
   display: grid;
   place-items: center;
-  border-bottom: 3px solid var(--color-border);
+  overflow: hidden;
+  padding-top: 60px; /* Reduced from 80px */
+}
+
+@keyframes fade-frames {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+@keyframes scale-frames {
+  0% { transform: scale3d(0.4, 0.4, 1); }
+  50% { transform: scale3d(2.2, 2.2, 1); }
+  100% { transform: scale3d(0.4, 0.4, 1); }
 }
 
 .content-wrapper {
@@ -17,21 +29,45 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 4rem;
   justify-items: center;
+  position: relative;
+  z-index: 10;
 }
 
 .photo-section {
   display: flex;
   justify-content: center;
+  transform: translateY(-20px); /* Changed from -30px */
+}
+
+.profile-orb-container {
+  position: relative;
+  width: 420px; /* Reduced from 450px */
+  height: 420px; /* Reduced from 450px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -30px; /* Changed from -40px */
+}
+
+.profile-orb-container .orb-container {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 500px; /* Reduced from 520px */
+  height: 500px; /* Reduced from 520px */
+  z-index: 1;
 }
 
 .profile-photo {
-  width: 350px;
-  height: 350px;
+  width: 330px; /* Reduced from 350px */
+  height: 330px; /* Reduced from 350px */
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid var(--color-accent);
+  /* border: 5px solid var(--color-another); */
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .profile-photo:hover {
@@ -39,11 +75,9 @@
   box-shadow: 0 8px 16px rgba(0,0,0,0.5);
 }
 
-/* Animated Title */
 .animated-title {
   color: var(--color-text);
-  font-family: 'Francois One', sans-serif;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; /* Reduced from 2rem */
   overflow: hidden;
 }
 
@@ -53,7 +87,25 @@
 }
 
 .animated-title > div.text-top {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
+  position: relative;
+  padding-bottom: 0.8rem; /* Reduced from 1rem */
+}
+
+.animated-title > div.text-top::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--color-accent);
+  max-width: 600px;
+}
+
+/* Light mode specific styling for the underline */
+.light-theme .animated-title > div.text-top::after {
+  background: var(--color-border);
 }
 
 .animated-title > div.text-top div {
@@ -63,7 +115,6 @@
 }
 
 .animated-title > div.text-bottom {
-  border-bottom: 3px solid var(--color-accent);
   padding-bottom: 0.5rem;
 }
 
@@ -71,28 +122,27 @@
   animation: showBottomText 1.2s forwards;
   animation-delay: 1s;
   transform: translateY(-100%);
+  font-family: 'Outfit', sans-serif;
+  color: var(--color-contrast);
 }
 
 .animated-title span {
   display: block;
   line-height: 1;
+  font-family: 'Francois One', sans-serif;
+  color: var(--color-text);
 }
 
-/* Use clamp() for responsive font sizing */
 .animated-title span:first-child {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
-  letter-spacing: -2px;
-}
-
-.animated-title span:nth-child(2) {
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
-  margin-top: -0.5rem;
+  letter-spacing: -1px;
 }
 
 .animated-title .text-bottom div {
   font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-  color: var(--color-accent);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 600px;
 }
 
 @keyframes showTopText {
@@ -105,122 +155,189 @@
   100% { transform: translateY(0); }
 }
 
-/* Description Section */
-.description-font {
-  font-family: var(--font-body);
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--color-text);
-  padding-left: 1rem;
-  border-left: 3px solid var(--color-accent);
-  margin-bottom: 1.5rem;
+/* Lottie Animation Styles */
+.lottie-container {
+  position: absolute;
+  bottom: 50px; /* Changed from 80px */
+  left: 50%;
+  width: 60%;
+  height: 100px;
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+  filter: brightness(0) invert(1);
+  opacity: 0;
+  transition: all 0.5s ease-out;
 }
 
-.btn {
-  display: inline-block;
-  padding: 20px 20px;
-  background: transparent;
-  outline: none;
-  border: 0;
-  color: #ff6200;
-  letter-spacing: 0.1em;
-  font-family: var(--font-heading);
-  font-size: 17px;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  z-index: 1;
-  border-radius: 4px;
-  animation: fadeInUp 1.5s forwards;
-  animation-delay: 1.2s;
+/* Light mode specific styling for Lottie animation */
+.light-theme .lottie-container {
+  filter: brightness(0);
 }
 
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+.lottie-container.visible {
+  opacity: 0.8;
+  transform: translateX(-50%) translateY(-20px);
 }
 
-/* Button cube styles remain unchanged */
-.cube {
-  position: relative;
-  transition: all 0.5s;
-}
-.cube .bg-top {
-  position: absolute;
-  height: 10px;
-  background: #ff6200;
-  bottom: 100%;
-  left: 5px;
-  right: -5px;
-  transform: skew(-45deg, 0);
-  transition: all 0.4s;
-}
-.cube .bg-top .bg-inner { bottom: 0; }
-.cube .bg {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  right: 0;
-  background: #ff6200;
-  transition: all 0.4s;
-}
-.cube .bg-right {
-  position: absolute;
-  background: #ff6200;
-  top: -5px;
-  z-index: 0;
-  bottom: 5px;
-  width: 10px;
-  left: 100%;
-  transform: skew(0, -45deg);
-  transition: all 0.4s;
-}
-.cube .bg-right .bg-inner { left: 0; }
-.cube .bg-inner {
-  background: #1A1A1A;
-  position: absolute;
-  left: 2px;
-  right: 2px;
-  top: 2px;
-  bottom: 2px;
-}
-.cube .text { position: relative; transition: all 0.4s; }
-.cube:hover .bg-inner { background: #ff6200; }
-.cube:hover .text { color: #1A1A1A; }
-.cube:hover .bg-right,
-.cube:hover .bg,
-.cube:hover .bg-top { background: #1A1A1A; }
-.cube:active {
-  z-index: 9999;
-  animation: bounce 0.1s linear;
-}
-@keyframes bounce {
-  50% { transform: scale(0.9); }
+.lottie-container iframe {
+  width: 100%;
+  height: 100%;
+  transition: inherit;
 }
 
-/* Responsive Design */
+/* Modified mobile styles */
 @media (max-width: 768px) {
+  .about-me-container {
+    padding: 1rem 1rem; /* Reduced from 2rem 1rem */
+    padding-top: 60px; /* Reduced from 80px */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
   .content-wrapper {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced from 2rem */
+    padding: 0 1rem;
+    margin-bottom: 80px; /* Reduced from 120px to shift Lottie up */
   }
+  
+  /* Adjusted orb containing image */
+  .profile-orb-container {
+    width: 280px; /* Reduced from 300px */
+    height: 280px; /* Reduced from 300px */
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .profile-orb-container .orb-container {
+    width: 340px; /* Adjusted for smaller container */
+    height: 340px; /* Adjusted for smaller container */
+    top: -30px;
+    left: -30px;
+    z-index: 1;
+  }
+  
   .profile-photo {
-    width: 280px;
-    height: 280px;
+    width: 220px; /* Reduced from 240px */
+    height: 220px; /* Reduced from 240px */
+    position: relative;
+    z-index: 2;
+    margin: 30px auto;
   }
+  
+  .photo-section {
+    transform: translateY(0);
+    order: -1;
+    margin-bottom: 1.5rem; /* Reduced from 2rem */
+  }
+
+  /* Adjusted text spacing and sizing */
+  .animated-title {
+    margin-top: 0.5rem; /* Reduced from 1rem */
+    margin-bottom: 1rem; /* Reduced from 1.5rem to bring Lottie closer */
+  }
+
   .animated-title span:first-child {
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: clamp(3.2rem, 12vw, 4.5rem); /* Increased from 2.8rem for mobile */
   }
-  .animated-title span:nth-child(2) {
-    font-size: clamp(1.8rem, 5.5vw, 3rem);
+  
+  .animated-title > div.text-top::after {
+    width: 100%;
+    margin: 0 auto;
+    max-width: none;
   }
+
+  .animated-title > div.text-bottom {
+    padding-bottom: 0.5rem; /* Reduced from 1rem */
+    margin-top: 0.5rem; /* Reduced from 1rem */
+  }
+
   .animated-title .text-bottom div {
-    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    font-size: clamp(1.5rem, 5vw, 2rem); /* Increased from 1.2rem for mobile */
+    text-align: center;
+    margin: 0 auto;
+    max-width: 95%;
+    line-height: 1.5;
   }
-  .btn {
-    padding: 15px 25px;
-    font-size: 15px;
+
+  /* Fixed positioning for Lottie container to appear closer to text */
+  .lottie-container {
+    position: relative; /* Changed to relative */
+    width: 80%;
+    height: 80px;
+    bottom: auto; /* Remove absolute positioning */
+    left: auto; /* Remove absolute positioning */
+    transform: none;
+    margin: -20px auto 0; /* Changed from 20px to -20px to move it up */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    z-index: 5;
+    margin-top: 10px;
+  }
+
+  .lottie-container.visible {
+    opacity: 0.9;
+    transform: translateY(-10px); /* Simple animation for mobile */
+    margin-top: -10px; /* Further reduced margin when visible */
+  }
+
+  .lottie-container iframe {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-me-container {
+    padding-bottom: 20px; /* Reduced from 30px to move everything up */
+  }
+  
+  .content-wrapper {
+    margin-bottom: 60px; /* Reduced from 100px to bring Lottie closer */
+  }
+  
+  .profile-orb-container {
+    width: 230px; /* Reduced from 250px */
+    height: 230px; /* Reduced from 250px */
+  }
+
+  .profile-orb-container .orb-container {
+    width: 280px; /* Reduced from 300px */
+    height: 280px; /* Reduced from 300px */
+    top: -25px;
+    left: -25px;
+  }
+
+  .profile-photo {
+    width: 180px; /* Reduced from 200px */
+    height: 180px; /* Reduced from 200px */
+    margin: 25px auto;
+  }
+
+  .animated-title span:first-child {
+    font-size: clamp(3rem, 11vw, 4rem); /* Increased from 2.5rem for smallest screens */
+  }
+
+  .animated-title .text-bottom div {
+    font-size: clamp(1.4rem, 4.5vw, 1.8rem); /* Increased from 1.1rem for smallest screens */
+    max-width: 100%;
+    line-height: 1.6; /* Increased for better readability */
+  }
+
+  .lottie-container {
+    height: 70px;
+    width: 90%;
+    margin-top: -30px; /* Even more negative margin for smallest screens */
+  }
+  
+  .lottie-container iframe {
+    max-width: 280px;
   }
 }

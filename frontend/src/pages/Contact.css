@@ -1,87 +1,209 @@
 /* Add a container style to center the form */
 .contact-section {
   height: 100vh; /* Full viewport height */
-  padding: 4rem 2rem;
+  padding: 2rem 2rem; /* Reduced from 4rem to 2rem */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-bg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-family: var(--font-heading);
+  margin-bottom: 1.5rem; /* Reduced from 3rem to 1.5rem */
+  position: relative;
+  width: fit-content;
+}
+
+.section-title h2 {
+  color: var(--color-text);
+  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  margin-bottom: 0.25rem; /* Reduced from 0.5rem to 0.25rem */
+}
+
+.title-underline {
+  height: 5px; /* Increased from 3px to 5px */
+  background-color: var(--color-contrast);
+  width: 60%; /* Reduced from 100% to 60% */
+  margin: 0 auto;
+  border-radius: 3px;
+}
+
+/* Light theme specific title underline */
+.light-theme .title-underline {
+  background-color: var(--color-border);
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; /* Reduced from 2rem to 1.5rem */
+  width: 100%;
+  align-items: start;
+}
+
+/* Form container styles */
+.form-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* Animations container styles */
+.animation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Reduced from 2rem to 1rem */
+  width: 100%;
+  height: 100%;
+}
+
+/* Style the animation container */
+.contact-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../assets/images/bg2.jpg") center/cover fixed;
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg);
+  padding: 1rem; /* Reduced from 2rem to 1rem */
 }
 
-/* Existing styles for the form */
+/* Style for the new animation */
+.new-animation {
+  margin-top: 1rem;
+}
+
+/* Style specifically for Lottie container */
+.contact-image-container > div {
+  width: 110%; /* Increased from 100% to 110% */
+  height: 100%;
+  max-width: 110%; /* Increased from 100% to 110% */
+  max-height: 70vh; /* Increased from 60vh to 70vh */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Add a slight animation on load */
+  animation: fadeIn 0.5s ease-in;
+  transform-origin: center center; /* Ensures scaling happens from the center */
+  margin: 0 auto; /* Centers the animation if it's wider than container */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Adjust form container for better alignment */
 .form {
-  --input-focus: var(--color-secondary);
-  --font-color: var(--color-text);
-  --font-color-sub: var(--color-light);
-  --bg-color: var(--color-white);
-  --main-color: var(--color-primary);
-  padding: 20px;
-  background: var(--color-bg);
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px; /* Increased from 15px to 20px */
+  background: var(--color-another);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 20px;
+  gap: 18px; /* Increased from 15px to 18px */
   border-radius: 5px;
-  border: 2px solid var(--main-color);
-  box-shadow: 4px 4px var(--main-color);
+  border: 2px solid var(--color-primary);
+  box-shadow: 4px 4px var(--color-primary);
 }
 
+.light-theme .form {
+  background: var(--color-primary);
+  border: 2px solid var(--color-another);
+}
+
+
 .title {
-  color: var(--font-color);
+  color: var(--color-text);
   font-weight: 900;
-  font-size: 20px;
-  margin-bottom: 25px;
+  font-family: var(--font-heading);
+  font-size: 22px; /* Reduced from 25px to 22px */
+  margin-bottom: 10px; /* Reduced from 25px to 10px */
 }
 
 .title span {
-  color: var(--font-color-sub);
-  font-weight: 600;
-  font-size: 17px;
+  color: var(--color-contrast);
+  font-weight: 900;
+  font-size: 18px; /* Reduced from 20px to 18px */
+  font-family: var(--font-heading);
+}
+
+/* Light theme specific title span color */
+.light-theme .title span {
+  color: var(--color-another);
 }
 
 .input {
-  width: 250px;
-  height: 40px;
+  width: 100%;
+  height: 38px; /* Increased from 35px to 38px */
   border-radius: 5px;
-  border: 2px solid var(--main-color);
-  background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
-  font-size: 15px;
+  border: 2px solid var(--color-text);
+  background-color: var(--color-bg);
+  box-shadow: 4px 4px var(--color-primary);
+  font-size: 16px;
   font-weight: 600;
-  color: var(--font-color);
-  padding: 5px 10px;
+  color: var(--color-text);
+  padding: 8px;
   outline: none;
 }
 
+.light-theme .input {
+  box-shadow: 4px 4px var(--color-accent);
+}
+
 .input::placeholder {
-  color: var(--font-color-sub);
+  color: var(--color-text);
   opacity: 0.8;
 }
 
-.input:focus {
-  border: 2px solid var(--input-focus);
+.light-theme .input::placeholder {
+  color: var(--color-accent);
 }
 
+.input:focus {
+  border: 2px solid var(--color-primary);
+}
+
+.light-theme .input:focus {
+  border: 2px solid var(--color-accent);
+}
+
+
 .textarea {
-  width: 250px;
-  height: 100px;
+  width: 100%;
+  height: 90px; /* Increased from 80px to 90px */
   border-radius: 5px;
-  border: 2px solid var(--main-color);
-  background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
-  font-size: 15px;
+  border: 2px solid var(--color-text);
+  background-color: var(--color-bg);
+  box-shadow: 4px 4px var(--color-primary);
+  font-size: 16px;
   font-weight: 600;
-  color: var(--font-color);
-  padding: 5px 10px;
+  color: var(--color-text);
+  padding: 8px;
   outline: none;
   resize: none;
 }
 
+.light-theme .textarea {
+  box-shadow: 4px 4px var(--color-accent);
+}
+
 .textarea::placeholder {
-  color: var(--font-color-sub);
+  color: var(--color-text);
   opacity: 0.8;
 }
 
@@ -95,44 +217,60 @@
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  border: 2px solid var(--main-color);
-  background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
-  color: var(--font-color);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-bg);
+  box-shadow: 4px 4px var(--color-primary);
+  color: var(--color-text);
   font-size: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.light-theme .button-log {
+  box-shadow: 4px 4px var(--color-accent);
+}
+
 .icon {
   width: 24px;
   height: 24px;
-  fill: var(--color-accent);
+  fill: var(--color-contrast);
 }
 
 .button-log:active,
 .button-confirm:active {
-  box-shadow: 0px 0px var(--main-color);
+  box-shadow: 0px 0px var(--color-primary);
   transform: translate(3px, 3px);
 }
 
+.light-theme .button-log:active,
+.light-theme .button-confirm:active {
+  box-shadow: 0px 0px var(--color-accent);
+}
+
+
 .button-confirm {
-  margin: 50px auto 0 auto;
+  margin: 15px auto 0; /* Reduced from 50px to 15px */
   width: 120px;
-  height: 40px;
+  height: 35px; /* Reduced from 40px to 35px */
   border-radius: 5px;
-  border: 2px solid var(--main-color);
-  background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
-  font-size: 17px;
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-bg);
+  box-shadow: 4px 4px var(--color-primary);
+  font-size: 16px; /* Reduced from 17px to 16px */
   font-weight: 600;
   color: var(--font-color);
   cursor: pointer;
 }
+
+.light-theme .button-confirm {
+  box-shadow: 4px 4px var(--color-accent);
+}
+
 /* Add these to enhance social buttons */
 .button-log:hover {
-  background-color: var(--main-color);
+  background-color: var(--color-contrast);
+  color: var(--color-primary);
   transition: all 0.2s ease;
 }
 
@@ -144,16 +282,46 @@
   transition: fill 0.2s ease;
 }
 
-.success-message {
-  color: #4CAF50;
-  padding: 10px;
-  margin-bottom: 15px;
+.success-message, .error-message {
+  padding: 8px; /* Reduced from 10px to 8px */
+  margin-bottom: 10px; /* Reduced from 15px to 10px */
   border-radius: 4px;
+  width: 100%;
+}
+
+.success-message {
+  color: #1cc021;
 }
 
 .error-message {
-  color: #f44336;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 4px;
+  color: #a2170d;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 1.5rem 1rem; /* Further reduced padding for mobile */
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .animation-container {
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-image-container > div {
+    max-height: 45vh; /* Increased from 40vh to 45vh */
+  }
+  
+  .form {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .section-title {
+    margin-bottom: 1rem;
+  }
 }
