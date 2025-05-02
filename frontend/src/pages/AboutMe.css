@@ -156,9 +156,10 @@
 }
 
 /* Lottie Animation Styles */
+/* Update Lottie container styles */
 .lottie-container {
   position: absolute;
-  bottom: 50px; /* Changed from 80px */
+  bottom: 50px;
   left: 50%;
   width: 60%;
   height: 100px;
@@ -166,14 +167,14 @@
   z-index: 5;
   pointer-events: none;
   overflow: hidden;
-  filter: brightness(0) invert(1);
   opacity: 0;
   transition: all 0.5s ease-out;
 }
 
-/* Light mode specific styling for Lottie animation */
+/* Remove filters that might cause rendering issues */
 .light-theme .lottie-container {
-  filter: brightness(0);
+  /* filter: brightness(0); - removed */
+  opacity: 0.8;
 }
 
 .lottie-container.visible {

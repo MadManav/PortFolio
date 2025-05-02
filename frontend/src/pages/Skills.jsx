@@ -26,34 +26,17 @@ function Skills() {
         visible: { 
             opacity: 1,
             transition: { 
-                duration: 0.1, // Reduced from 0.15
+                duration: 0.1,
                 when: "beforeChildren",
             }
         }
     };
 
+    // Simplified variants without sliding animation
     const skillCardVariants = {
-        hidden: { 
-            opacity: 0,
-            y: "50vh", // Reduced from 100vh to make animation distance shorter
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                type: "spring",
-                stiffness: 700, // Increased from 500
-                damping: 25, // Decreased from 30
-                duration: 0.1 // Reduced from 0.35
-            }
-        },
-        exit: {
-            y: "50vh", // Reduced from 100vh
-            opacity: 0,
-            transition: {
-                duration: 0.15 // Reduced from 0.2
-            }
-        }
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.1 } },
+        exit: { opacity: 0, transition: { duration: 0.15 } }
     };
 
     const skillsData = [
@@ -95,7 +78,7 @@ function Skills() {
             className="skills"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }} // Reduced from 0.3
+            transition={{ duration: 0.2 }}
         >
             <h2 className="skills__title">SKILLS</h2>
             <p className="skills__tagline">
@@ -111,7 +94,7 @@ function Skills() {
                             onClick={() => setActiveTab(category.category)}
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
-                            transition={{ duration: 0.01 }} // Reduced from 0.1
+                            transition={{ duration: 0.01 }}
                         >
                             <img src={category.icon} alt={category.category} className="skills__tab-icon" />
                             {category.category}
@@ -130,7 +113,7 @@ function Skills() {
                                 animate="visible"
                                 exit="hidden"
                             >
-                                {category.skills.map((skill, index) => (
+                                {category.skills.map((skill) => (
                                     <motion.div
                                         key={skill.name}
                                         className="skills__card"
@@ -138,7 +121,6 @@ function Skills() {
                                         initial="hidden"
                                         animate="visible"
                                         exit="exit"
-                                        custom={index} // Added to help with staggered animations if needed
                                     >
                                         <img src={skill.icon} alt={skill.name} className="skills__icon" />
                                         <h3 className="skills__name">{skill.name}</h3>

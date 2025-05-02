@@ -160,7 +160,7 @@ const ContactForm = () => {
           <div className="contact-image-container">
             {!animationError ? (
               <DotLottieReact 
-                src="https://lottie.host/ccbffb85-db48-43b9-93e8-3d2b6798dcd0/PRjq9A8Qdb.lottie" 
+                src="https://assets3.lottiefiles.com/packages/lf20_iorpbol0.json"
                 loop 
                 autoplay
                 onError={(e) => {

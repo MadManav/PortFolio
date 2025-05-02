@@ -66,7 +66,7 @@ const NavBar = () => {
         <a
           key={item}
           href="/resume.pdf"
-          download
+          download="ManavDodani_Resume.pdf"
           className="navbar__item navbar__item-resume"
           onClick={() => setMobileMenuOpen(false)}
         >

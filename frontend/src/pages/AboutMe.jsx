@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Particles from "../components/Particles.jsx";
 import Orb from "../components/Orb.jsx";
 import manavimg from "../assets/images/manavbg.png";
 import manavimgl from "../assets/images/manavbglight.png";
 import "./AboutMe.css";
 
-
 function AboutMe() {
-  const [showLottie, setShowLottie] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLottie(true);
-    }, 5000); // 5-second delay
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section className="about-me-container" id="about">
       <div className="content-wrapper">
@@ -49,16 +38,6 @@ function AboutMe() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Lottie Animation with delay */}
-      <div className={`lottie-container ${showLottie ? 'visible' : ''}`}>
-        <iframe 
-          src="https://lottie.host/embed/bc867c3d-99cd-4d2c-8f1e-25a9a024eb81/nvnVbagEyP.lottie" 
-          frameBorder="0"
-          allowFullScreen
-          title="Lottie Animation"
-        ></iframe>
       </div>
     </section>
   );

@@ -80,17 +80,25 @@
 
 /* Style specifically for Lottie container */
 .contact-image-container > div {
-  width: 110%; /* Increased from 100% to 110% */
+  width: 130%; /* Increased from 110% to 130% */
   height: 100%;
-  max-width: 110%; /* Increased from 100% to 110% */
-  max-height: 70vh; /* Increased from 60vh to 70vh */
+  max-width: 130%; /* Increased from 110% to 130% */
+  max-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Add a slight animation on load */
   animation: fadeIn 0.5s ease-in;
-  transform-origin: center center; /* Ensures scaling happens from the center */
-  margin: 0 auto; /* Centers the animation if it's wider than container */
+  transform-origin: center center;
+  margin: 0 auto;
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .contact-image-container > div {
+    width: 100%; /* Adjust for mobile to prevent overflow */
+    max-width: 100%;
+    max-height: 45vh;
+  }
 }
 
 @keyframes fadeIn {

@@ -119,13 +119,13 @@ export default function Carousel({ items = [] }) {
   const [state, dispatch] = React.useReducer(slidesReducer, initialState);
 
   // Auto-play functionality
-  useEffect(() => {
-    const timer = setInterval(() => {
-      dispatch({ type: "NEXT", totalSlides: items.length });
-    }, 5000);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     dispatch({ type: "NEXT", totalSlides: items.length });
+  //   }, 5000);
 
-    return () => clearInterval(timer);
-  }, [items.length]);
+  //   return () => clearInterval(timer);
+  // }, [items.length]);
 
   return (
     <div className="slides carousel-slides">
