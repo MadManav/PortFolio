@@ -82,8 +82,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Portfolio.wsgi.application'
 
+# Update CORS settings
 CORS_ALLOWED_ORIGINS = [
     'https://portfolio-bqyt.onrender.com',
+    'https://portfolio-5xsq.onrender.com',
+    'http://localhost:5173',  # Add this for local development
+    'http://127.0.0.1:5173'   # Add this for local development
+]
+
+# Add these CORS settings
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
 ]
 
 # Database
@@ -131,8 +146,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# Update static files configuration
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'frontend/dist']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR.parent / 'frontend' / 'dist'  # Point to frontend dist folder
+]
 WHITENOISE_ROOT = BASE_DIR / 'frontend/dist'
 
 # Default primary key field type

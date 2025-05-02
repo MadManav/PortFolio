@@ -1,0 +1,39 @@
+/* Development-only overrides for navbar */
+/* These styles will override any bundled CSS */
+
+/* Navbar colors on scroll - ONLY affect non-active, non-hover items */
+body .navbar.scrolled .navbar__item:not(.active):not(:hover) {
+  color: var(--color-text) !important;
+}
+
+/* Always ensure active items have contrast color */
+body .navbar .navbar__item.active {
+  color: var(--color-contrast) !important;
+}
+
+body .navbar.scrolled .navbar__item.active {
+  color: var(--color-contrast) !important;
+}
+
+/* Always ensure hover has contrast color */
+body .navbar .navbar__item:hover {
+  color: var(--color-contrast) !important;
+}
+
+body .navbar.scrolled .navbar__item:hover {
+  color: var(--color-contrast) !important;
+}
+
+/* Logo styling */
+body .navbar.scrolled .navbar__logo svg {
+  fill: var(--color-text) !important;
+}
+
+body .navbar.scrolled .navbar__logo svg:hover {
+  fill: var(--color-contrast) !important;
+}
+
+/* Force scrolled background */
+body .navbar.scrolled {
+  background-color: var(--color-bg) !important;
+} 
