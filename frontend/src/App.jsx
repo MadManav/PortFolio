@@ -8,6 +8,7 @@ import ContactForm from "./pages/Contact.jsx";
 import NormalCursor from "./components/NormalCursor.jsx";
 import Loader from "./components/Loader.jsx";
 import { ThemeProvider } from "./context/ThemeContext";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -51,6 +52,7 @@ function App() {
               <Projects />
               <ContactForm />
             </div>
+            <Footer />
           </>
         )}
       </div>

@@ -27,14 +27,16 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
+      // Update the axios post URL to match your backend
       const response = await axios.post(
-        "https://portfolio-5xsq.onrender.com/api/contact-messages/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+          "https://portfolio-5xsq.onrender.com/api/contact-messages/",  // Make sure this matches your deployed backend URL
+          formData,
+          {
+              headers: {
+                  "Content-Type": "application/json",
+              },
+              withCredentials: true  // Add this line
+          }
       );
 
       if (response.status === 201) {
