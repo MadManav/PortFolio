@@ -39,7 +39,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div>
+      <div className="app-container">
         {isLoading ? (
           <Loader key={loaderKey} />
         ) : (

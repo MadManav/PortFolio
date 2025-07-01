@@ -309,6 +309,9 @@
 @media (max-width: 768px) {
   .contact-section {
     padding: 1.5rem 1rem; /* Further reduced padding for mobile */
+    min-height: auto;
+    height: auto;
+    margin-bottom: 2.5rem; /* Ensure space for footer */
   }
   
   .contact-content {
